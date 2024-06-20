@@ -5,4 +5,4 @@
 #### DEPENDENCIES:
 Libraries = tkinter , tkinter.filedialog , turtle , ply.lex , ply.yacc
 
-<img src="https://github.com/rai-shi/Drawing-Robot/blob/main/image/ui.png?raw=true" width="500" >
+<img src="https://github.com/rai-shi/Drawing-Robot/blob/main/ui.png?raw=true" width="500" >
