@@ -1,0 +1,378 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> L NUMBER LBRACKET expression RBRACKET
+Rule 2     expression -> L NUMBER LBRACKET expression expression RBRACKET
+Rule 3     expression -> L NUMBER LBRACKET instructions RBRACKET
+Rule 4     expression -> L NUMBER LBRACKET instructions RBRACKET instructions
+Rule 5     instructions -> instruction instruction
+Rule 6     instruction -> F NUMBER R NUMBER
+Rule 7     instruction -> B NUMBER R NUMBER
+Rule 8     instruction -> PEN NUMBER
+Rule 9     instruction -> COLOR COLOR_TYPE
+Rule 10    instruction -> R NUMBER
+Rule 11    instruction -> F NUMBER
+Rule 12    instruction -> B NUMBER
+
+Terminals, with rules where they appear
+
+B                    : 7 12
+COLOR                : 9
+COLOR_TYPE           : 9
+F                    : 6 11
+L                    : 1 2 3 4
+LBRACKET             : 1 2 3 4
+NUMBER               : 1 2 3 4 6 6 7 7 8 10 11 12
+PEN                  : 8
+R                    : 6 7 10
+RBRACKET             : 1 2 3 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2 2 0
+instruction          : 5 5
+instructions         : 3 4 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . L NUMBER LBRACKET expression RBRACKET
+    (2) expression -> . L NUMBER LBRACKET expression expression RBRACKET
+    (3) expression -> . L NUMBER LBRACKET instructions RBRACKET
+    (4) expression -> . L NUMBER LBRACKET instructions RBRACKET instructions
+
+    L               shift and go to state 2
+
+    expression                     shift and go to state 1
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> L . NUMBER LBRACKET expression RBRACKET
+    (2) expression -> L . NUMBER LBRACKET expression expression RBRACKET
+    (3) expression -> L . NUMBER LBRACKET instructions RBRACKET
+    (4) expression -> L . NUMBER LBRACKET instructions RBRACKET instructions
+
+    NUMBER          shift and go to state 3
+
+
+state 3
+
+    (1) expression -> L NUMBER . LBRACKET expression RBRACKET
+    (2) expression -> L NUMBER . LBRACKET expression expression RBRACKET
+    (3) expression -> L NUMBER . LBRACKET instructions RBRACKET
+    (4) expression -> L NUMBER . LBRACKET instructions RBRACKET instructions
+
+    LBRACKET        shift and go to state 4
+
+
+state 4
+
+    (1) expression -> L NUMBER LBRACKET . expression RBRACKET
+    (2) expression -> L NUMBER LBRACKET . expression expression RBRACKET
+    (3) expression -> L NUMBER LBRACKET . instructions RBRACKET
+    (4) expression -> L NUMBER LBRACKET . instructions RBRACKET instructions
+    (1) expression -> . L NUMBER LBRACKET expression RBRACKET
+    (2) expression -> . L NUMBER LBRACKET expression expression RBRACKET
+    (3) expression -> . L NUMBER LBRACKET instructions RBRACKET
+    (4) expression -> . L NUMBER LBRACKET instructions RBRACKET instructions
+    (5) instructions -> . instruction instruction
+    (6) instruction -> . F NUMBER R NUMBER
+    (7) instruction -> . B NUMBER R NUMBER
+    (8) instruction -> . PEN NUMBER
+    (9) instruction -> . COLOR COLOR_TYPE
+    (10) instruction -> . R NUMBER
+    (11) instruction -> . F NUMBER
+    (12) instruction -> . B NUMBER
+
+    L               shift and go to state 2
+    F               shift and go to state 8
+    B               shift and go to state 10
+    PEN             shift and go to state 11
+    COLOR           shift and go to state 12
+    R               shift and go to state 9
+
+    expression                     shift and go to state 5
+    instructions                   shift and go to state 6
+    instruction                    shift and go to state 7
+
+state 5
+
+    (1) expression -> L NUMBER LBRACKET expression . RBRACKET
+    (2) expression -> L NUMBER LBRACKET expression . expression RBRACKET
+    (1) expression -> . L NUMBER LBRACKET expression RBRACKET
+    (2) expression -> . L NUMBER LBRACKET expression expression RBRACKET
+    (3) expression -> . L NUMBER LBRACKET instructions RBRACKET
+    (4) expression -> . L NUMBER LBRACKET instructions RBRACKET instructions
+
+    RBRACKET        shift and go to state 14
+    L               shift and go to state 2
+
+    expression                     shift and go to state 13
+
+state 6
+
+    (3) expression -> L NUMBER LBRACKET instructions . RBRACKET
+    (4) expression -> L NUMBER LBRACKET instructions . RBRACKET instructions
+
+    RBRACKET        shift and go to state 15
+
+
+state 7
+
+    (5) instructions -> instruction . instruction
+    (6) instruction -> . F NUMBER R NUMBER
+    (7) instruction -> . B NUMBER R NUMBER
+    (8) instruction -> . PEN NUMBER
+    (9) instruction -> . COLOR COLOR_TYPE
+    (10) instruction -> . R NUMBER
+    (11) instruction -> . F NUMBER
+    (12) instruction -> . B NUMBER
+
+    F               shift and go to state 8
+    B               shift and go to state 10
+    PEN             shift and go to state 11
+    COLOR           shift and go to state 12
+    R               shift and go to state 9
+
+    instruction                    shift and go to state 16
+
+state 8
+
+    (6) instruction -> F . NUMBER R NUMBER
+    (11) instruction -> F . NUMBER
+
+    NUMBER          shift and go to state 17
+
+
+state 9
+
+    (10) instruction -> R . NUMBER
+
+    NUMBER          shift and go to state 18
+
+
+state 10
+
+    (7) instruction -> B . NUMBER R NUMBER
+    (12) instruction -> B . NUMBER
+
+    NUMBER          shift and go to state 19
+
+
+state 11
+
+    (8) instruction -> PEN . NUMBER
+
+    NUMBER          shift and go to state 20
+
+
+state 12
+
+    (9) instruction -> COLOR . COLOR_TYPE
+
+    COLOR_TYPE      shift and go to state 21
+
+
+state 13
+
+    (2) expression -> L NUMBER LBRACKET expression expression . RBRACKET
+
+    RBRACKET        shift and go to state 22
+
+
+state 14
+
+    (1) expression -> L NUMBER LBRACKET expression RBRACKET .
+
+    $end            reduce using rule 1 (expression -> L NUMBER LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 1 (expression -> L NUMBER LBRACKET expression RBRACKET .)
+    L               reduce using rule 1 (expression -> L NUMBER LBRACKET expression RBRACKET .)
+
+
+state 15
+
+    (3) expression -> L NUMBER LBRACKET instructions RBRACKET .
+    (4) expression -> L NUMBER LBRACKET instructions RBRACKET . instructions
+    (5) instructions -> . instruction instruction
+    (6) instruction -> . F NUMBER R NUMBER
+    (7) instruction -> . B NUMBER R NUMBER
+    (8) instruction -> . PEN NUMBER
+    (9) instruction -> . COLOR COLOR_TYPE
+    (10) instruction -> . R NUMBER
+    (11) instruction -> . F NUMBER
+    (12) instruction -> . B NUMBER
+
+    $end            reduce using rule 3 (expression -> L NUMBER LBRACKET instructions RBRACKET .)
+    RBRACKET        reduce using rule 3 (expression -> L NUMBER LBRACKET instructions RBRACKET .)
+    L               reduce using rule 3 (expression -> L NUMBER LBRACKET instructions RBRACKET .)
+    F               shift and go to state 8
+    B               shift and go to state 10
+    PEN             shift and go to state 11
+    COLOR           shift and go to state 12
+    R               shift and go to state 9
+
+    instructions                   shift and go to state 23
+    instruction                    shift and go to state 7
+
+state 16
+
+    (5) instructions -> instruction instruction .
+
+    RBRACKET        reduce using rule 5 (instructions -> instruction instruction .)
+    $end            reduce using rule 5 (instructions -> instruction instruction .)
+    L               reduce using rule 5 (instructions -> instruction instruction .)
+
+
+state 17
+
+    (6) instruction -> F NUMBER . R NUMBER
+    (11) instruction -> F NUMBER .
+
+  ! shift/reduce conflict for R resolved as shift
+    R               shift and go to state 24
+    F               reduce using rule 11 (instruction -> F NUMBER .)
+    B               reduce using rule 11 (instruction -> F NUMBER .)
+    PEN             reduce using rule 11 (instruction -> F NUMBER .)
+    COLOR           reduce using rule 11 (instruction -> F NUMBER .)
+    RBRACKET        reduce using rule 11 (instruction -> F NUMBER .)
+    $end            reduce using rule 11 (instruction -> F NUMBER .)
+    L               reduce using rule 11 (instruction -> F NUMBER .)
+
+  ! R               [ reduce using rule 11 (instruction -> F NUMBER .) ]
+
+
+state 18
+
+    (10) instruction -> R NUMBER .
+
+    F               reduce using rule 10 (instruction -> R NUMBER .)
+    B               reduce using rule 10 (instruction -> R NUMBER .)
+    PEN             reduce using rule 10 (instruction -> R NUMBER .)
+    COLOR           reduce using rule 10 (instruction -> R NUMBER .)
+    R               reduce using rule 10 (instruction -> R NUMBER .)
+    RBRACKET        reduce using rule 10 (instruction -> R NUMBER .)
+    $end            reduce using rule 10 (instruction -> R NUMBER .)
+    L               reduce using rule 10 (instruction -> R NUMBER .)
+
+
+state 19
+
+    (7) instruction -> B NUMBER . R NUMBER
+    (12) instruction -> B NUMBER .
+
+  ! shift/reduce conflict for R resolved as shift
+    R               shift and go to state 25
+    F               reduce using rule 12 (instruction -> B NUMBER .)
+    B               reduce using rule 12 (instruction -> B NUMBER .)
+    PEN             reduce using rule 12 (instruction -> B NUMBER .)
+    COLOR           reduce using rule 12 (instruction -> B NUMBER .)
+    RBRACKET        reduce using rule 12 (instruction -> B NUMBER .)
+    $end            reduce using rule 12 (instruction -> B NUMBER .)
+    L               reduce using rule 12 (instruction -> B NUMBER .)
+
+  ! R               [ reduce using rule 12 (instruction -> B NUMBER .) ]
+
+
+state 20
+
+    (8) instruction -> PEN NUMBER .
+
+    F               reduce using rule 8 (instruction -> PEN NUMBER .)
+    B               reduce using rule 8 (instruction -> PEN NUMBER .)
+    PEN             reduce using rule 8 (instruction -> PEN NUMBER .)
+    COLOR           reduce using rule 8 (instruction -> PEN NUMBER .)
+    R               reduce using rule 8 (instruction -> PEN NUMBER .)
+    RBRACKET        reduce using rule 8 (instruction -> PEN NUMBER .)
+    $end            reduce using rule 8 (instruction -> PEN NUMBER .)
+    L               reduce using rule 8 (instruction -> PEN NUMBER .)
+
+
+state 21
+
+    (9) instruction -> COLOR COLOR_TYPE .
+
+    F               reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    B               reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    PEN             reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    COLOR           reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    R               reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    RBRACKET        reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    $end            reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+    L               reduce using rule 9 (instruction -> COLOR COLOR_TYPE .)
+
+
+state 22
+
+    (2) expression -> L NUMBER LBRACKET expression expression RBRACKET .
+
+    $end            reduce using rule 2 (expression -> L NUMBER LBRACKET expression expression RBRACKET .)
+    RBRACKET        reduce using rule 2 (expression -> L NUMBER LBRACKET expression expression RBRACKET .)
+    L               reduce using rule 2 (expression -> L NUMBER LBRACKET expression expression RBRACKET .)
+
+
+state 23
+
+    (4) expression -> L NUMBER LBRACKET instructions RBRACKET instructions .
+
+    $end            reduce using rule 4 (expression -> L NUMBER LBRACKET instructions RBRACKET instructions .)
+    RBRACKET        reduce using rule 4 (expression -> L NUMBER LBRACKET instructions RBRACKET instructions .)
+    L               reduce using rule 4 (expression -> L NUMBER LBRACKET instructions RBRACKET instructions .)
+
+
+state 24
+
+    (6) instruction -> F NUMBER R . NUMBER
+
+    NUMBER          shift and go to state 26
+
+
+state 25
+
+    (7) instruction -> B NUMBER R . NUMBER
+
+    NUMBER          shift and go to state 27
+
+
+state 26
+
+    (6) instruction -> F NUMBER R NUMBER .
+
+    F               reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    B               reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    PEN             reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    COLOR           reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    R               reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    RBRACKET        reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    $end            reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+    L               reduce using rule 6 (instruction -> F NUMBER R NUMBER .)
+
+
+state 27
+
+    (7) instruction -> B NUMBER R NUMBER .
+
+    F               reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    B               reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    PEN             reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    COLOR           reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    R               reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    RBRACKET        reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    $end            reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+    L               reduce using rule 7 (instruction -> B NUMBER R NUMBER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for R in state 17 resolved as shift
+WARNING: shift/reduce conflict for R in state 19 resolved as shift
